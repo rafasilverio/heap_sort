@@ -1,5 +1,6 @@
 /*===============================================================================*/
-/* Autor: Rafael Silvério da Silva - https://github.com/rafasilverio/avl-tree  */
+/* Autor: Rafael Silvério da Silva - https://github.com/rafasilverio/heap_sort
+/*        Bruno Padilha Rocha
 /*===============================================================================*/
 
 #include "heap_sort.h"
@@ -20,12 +21,10 @@ void max_heapify(struct max_heap* maxHeap, int old_largest){
     largest = left;
     compares();
   }
-
   if (right < maxHeap->size && maxHeap->array[right] > maxHeap->array[largest]){
     largest = right;
     compares();
   }
-
   if (largest != old_largest){
     swap(&maxHeap->array[largest], &maxHeap->array[old_largest]);
     swaps();
@@ -33,7 +32,27 @@ void max_heapify(struct max_heap* maxHeap, int old_largest){
   }
 }
 
-max_heap* create_build_heap(int *array, int size){
+void min_heapify(struct max_heap* maxHeap, int old_largest){
+  int largest = old_largest;
+  int left = (old_largest << 1) + 1;  //2*i + 1
+  int right = (old_largest + 1) << 1; //2*i + 2
+
+  if (left < maxHeap->size && maxHeap->array[left] < maxHeap->array[largest]){
+    largest = left;
+    compares();
+  }
+  if (right < maxHeap->size && maxHeap->array[right] < maxHeap->array[largest]){
+    largest = right;
+    compares();
+  }
+  if (largest != old_largest){
+    swap(&maxHeap->array[largest], &maxHeap->array[old_largest]);
+    swaps();
+    min_heapify(maxHeap, largest);
+  }
+}
+
+max_heap* create_build_max_heap(int *array, int size){
   int i;
   max_heap* maxHeap = (max_heap*) malloc(sizeof(max_heap));
   maxHeap->size = size;
@@ -44,14 +63,36 @@ max_heap* create_build_heap(int *array, int size){
   return maxHeap;
 }
 
-void heap_sort(int* array, int size){
-  max_heap* maxHeap = create_build_heap(array, size);
+max_heap* create_build_min_heap(int *array, int size){
+  int i;
+  max_heap* maxHeap = (max_heap*) malloc(sizeof(max_heap));
+  maxHeap->size = size;
+  maxHeap->array = array;
+
+  for (i = (maxHeap->size - 2) / 2; i >= 0; --i)
+    min_heapify(maxHeap, i);
+  return maxHeap;
+}
+
+void max_heap_sort(int* array, int size){
+  max_heap* maxHeap = create_build_max_heap(array, size);
 
   if(size > 1){
     max_heapify(maxHeap, 0);
     swap(&array[0], &array[maxHeap->size - 1]);
     swaps();
-    heap_sort(maxHeap->array,--maxHeap->size);
+    max_heap_sort(maxHeap->array,--maxHeap->size);
+  }
+}
+
+void min_heap_sort(int* array, int size){
+  max_heap* maxHeap = create_build_min_heap(array, size);
+
+  if(size > 1){
+    min_heapify(maxHeap, 0);
+    swap(&array[0], &array[maxHeap->size - 1]);
+    swaps();
+    min_heap_sort(maxHeap->array,--maxHeap->size);
   }
 }
 

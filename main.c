@@ -1,5 +1,6 @@
 /*===============================================================================*/
-/* Autor: Rafael Silvério da Silva - https://github.com/rafasilverio/avl-tree  */
+/* Autor: Rafael Silvério da Silva - https://github.com/rafasilverio/heap_sort  */
+/*        Bruno Padilha Rocha
 /*===============================================================================*/
 
 #include "heap_sort.h"
@@ -10,16 +11,30 @@ int main(){
   int size_char = sizeof(array_char)/sizeof(array_char[0]);
   int size_int = sizeof(array_int)/sizeof(array_int[0]);
 
-  printf("Array Chars\n");
+  /*Use for max_heap*/
+  printf("\nArray Chars max_heap\n");
   print_char(array_char, size_char);
-  heap_sort(array_char, size_char);
-  printf("\nSorted array chars\n");
+  max_heap_sort(array_char, size_char);
+  printf("\nSorted array chars max_heap\n");
   print_char(array_char, size_char);
 
-  printf("\nArray Ints\n");
+  printf("\nArray Ints max_heap\n");
   print_int(array_int, size_int);
-  heap_sort(array_int, size_int);
-  printf("\nSorted array Ints\n");
+  max_heap_sort(array_int, size_int);
+  printf("\nSorted array Ints max_heap\n");
+  print_int(array_int, size_int);
+
+  /*Use for min_heap*/
+  printf("\nArray Chars min_heap\n");
+  print_char(array_char, size_char);
+  min_heap_sort(array_char, size_char);
+  printf("\nSorted array chars min_heap\n");
+  print_char(array_char, size_char);
+
+  printf("\nArray Ints min_heap\n");
+  print_int(array_int, size_int);
+  min_heap_sort(array_int, size_int);
+  printf("\nSorted array Ints min_heap\n");
   print_int(array_int, size_int);
 
   swaps_and_compares();
