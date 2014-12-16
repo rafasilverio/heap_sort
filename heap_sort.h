@@ -1,23 +1,23 @@
 /*===============================================================================*/
 /* Autor: Rafael Silvério da Silva - https://github.com/rafasilverio/heap_sort  */
-/*        Bruno Padilha Rocha
 /*===============================================================================*/
 
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct max_heap{
+#define MIN 1
+#define MAX 0
+
+typedef struct heap{
   int size;
   int* array;
-} max_heap;
+} heap;
 
 void swap(int* one, int* two);
-void max_heapify(max_heap* max_heap, int largest);
-void min_heapify(max_heap* max_heap, int largest);
-max_heap* create_build_max_heap(int *array, int size);
-max_heap* create_build_min_heap(int *array, int size);
-void max_heap_sort(int* array, int size);
-void min_heap_sort(int* array, int size);
+void max_heapify(heap* heap, int largest);
+void min_heapify(heap* heap, int largest);
+heap* create_build_heap(int *array, int size, int which_one);
+void heap_sort(int* array, int size, int which_one);
 void print_int(int* arr, int size);
 void print_char(int* arr, int size);
 void compares(void);
