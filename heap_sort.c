@@ -1,5 +1,6 @@
 /*===============================================================================*/
 /* Autor: Rafael Silvério da Silva - https://github.com/rafasilverio/heap_sort
+/*        Rodrigo Tribiolli Moreira
 /*===============================================================================*/
 
 #include "heap_sort.h"
@@ -75,14 +76,12 @@ void heap_sort(int* array, int size, int which_one){
 
 void print_int(int* array, int size){
   int i;
-  for (i = 0; i < size; ++i)
-    printf("%d ", array[i]);
+  for (i = 0; i < size; ++i) printf("%d ", array[i]);
 }
 
 void print_char(int* array, int size){
   int i;
-  for (i = 0; i < size; ++i)
-    printf("%c ", array[i]);
+  for (i = 0; i < size; ++i) printf("%c ", array[i]);
 }
 
 void swaps_and_compares(void){

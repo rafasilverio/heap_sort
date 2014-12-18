@@ -1,5 +1,6 @@
 /*===============================================================================*/
-/* Autor: Rafael Silvério da Silva - https://github.com/rafasilverio/heap_sort  */
+/* Autor: Rafael Silvério da Silva - https://github.com/rafasilverio/heap_sort
+/*        Rodrigo Tribiolli Moreira
 /*===============================================================================*/
 
 #include <stdio.h>
